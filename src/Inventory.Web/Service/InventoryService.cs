@@ -1,8 +1,6 @@
-using System.Diagnostics;
-using Ardalis.Specification;
 using Inventory.Web.Entity;
-using Inventory.Web.Interfaces.DomainServices;
 using Inventory.Web.Interfaces.Repositories;
+using Inventory.Web.Interfaces.DomainServices;
 using Inventory.Web.Model.Dto;
 using Inventory.Web.Producer;
 using Inventory.Web.Specifications;
@@ -12,12 +10,14 @@ namespace Inventory.Web.Service;
 public class InventoryService : IInventoryService
 {
     private readonly IReadRepository<Product> _productReadRepository;
+    private readonly IRepository<Product> _productRepository; 
     private readonly RequestSupplies _requestSupplies;
 
-    public InventoryService(IReadRepository<Product> productReadRepository, RequestSupplies requestSupplies)
+    public InventoryService(IReadRepository<Product> productReadRepository, RequestSupplies requestSupplies, IRepository<Product> productRepository)
     {
         _productReadRepository = productReadRepository;
         _requestSupplies = requestSupplies;
+        _productRepository = productRepository;
     }
 
     public async Task<List<ProductDto>> GetProductsAsync()
@@ -56,5 +56,13 @@ public class InventoryService : IInventoryService
             };
             await _requestSupplies.ProduceAsync("mp3-request-restock", requestSuppliesDto);
         }
+    }
+    
+    // i want to make UpdateProductQuantityAsync function to be called from the consumer
+    public async Task UpdateProductQuantityAsync(int id, int quantity)
+    {
+        var product = await _productReadRepository.FirstOrDefaultAsync(new ProductByIdSpec(id));
+        product.Quantity += quantity;
+        await _productRepository.SaveChangesAsync();
     }
 }

@@ -10,4 +10,6 @@ public interface IInventoryService
     Task<ProductDto> GetProductByIdAsync(int id);
     
     Task RequestSuppliesAsync(ProductDto productDto);
+    
+    Task UpdateProductQuantityAsync(int productId, int quantityChange);
 }

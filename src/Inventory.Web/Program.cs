@@ -1,3 +1,4 @@
+using Inventory.Web.Consumer;
 using Inventory.Web.Data;
 using Inventory.Web.Interfaces.DomainServices;
 using Inventory.Web.Interfaces.Repositories;
@@ -39,6 +40,10 @@ builder.Services.AddScoped<IInventoryService, InventoryService>();
 
 // build kafka producer
 builder.Services.AddSingleton<RequestSupplies>();
+
+//kafka consumer
+builder.Services.AddScoped<IInventoryService, InventoryService>();
+builder.Services.AddHostedService<InventoryUpdateConsumer>();
 
 // Repositories
 builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
