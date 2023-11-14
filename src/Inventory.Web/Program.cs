@@ -1,6 +1,7 @@
 using Inventory.Web.Data;
 using Inventory.Web.Interfaces.DomainServices;
 using Inventory.Web.Interfaces.Repositories;
+using Inventory.Web.Producer;
 using Inventory.Web.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +37,8 @@ builder.Services.AddScoped<IInventoryService, InventoryService>();
 
 // Background Services
 
+// build kafka producer
+builder.Services.AddSingleton<RequestSupplies>();
 
 // Repositories
 builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));

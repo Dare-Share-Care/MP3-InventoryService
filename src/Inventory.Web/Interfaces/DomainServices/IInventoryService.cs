@@ -8,4 +8,6 @@ public interface IInventoryService
     Task<List<ProductDto>> GetProductsAsync();
     
     Task<ProductDto> GetProductByIdAsync(int id);
+    
+    Task RequestSuppliesAsync(ProductDto productDto);
 }

@@ -1,4 +1,5 @@
 using Inventory.Web.Interfaces.DomainServices;
+using Inventory.Web.Model.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory.Web.Controller;
@@ -26,5 +27,12 @@ public class InventoryController : ControllerBase
     {
         var product = await _inventoryService.GetProductByIdAsync(id);
         return Ok(product);
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> RequestSuppliesAsync(ProductDto productDto)
+    {
+        await _inventoryService.RequestSuppliesAsync(productDto);
+        return Ok();
     }
 }

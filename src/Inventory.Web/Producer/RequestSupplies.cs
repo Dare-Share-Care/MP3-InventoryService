@@ -6,7 +6,7 @@ namespace Inventory.Web.Producer;
 public class RequestSupplies : IDisposable
 {
     private readonly IProducer<string, string> _producer;
-    private const string BootstrapServers = "localhost:9092";
+    private const string BootstrapServers = "localhost:29094";
     
     public RequestSupplies()
     {
