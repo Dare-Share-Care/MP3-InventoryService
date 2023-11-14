@@ -1,0 +1,17 @@
+﻿version: '3.8'
+
+services:
+  inventory.web:
+    image: inventory.web
+    build:
+      context: .
+      dockerfile: src/Inventory.Web/Dockerfile
+    ports:
+      - "8082:80"
+    networks:
+      - kafka
+
+networks:
+  kafka:
+    external: false
+    name: kafka

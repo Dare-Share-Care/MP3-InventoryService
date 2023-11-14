@@ -29,6 +29,7 @@ public class InventoryController : ControllerBase
         return Ok(product);
     }
     
+    // Marked for deletion DEPRECATED!
     [HttpPost]
     public async Task<IActionResult> RequestSuppliesAsync(ProductDto productDto)
     {

@@ -9,7 +9,7 @@ namespace Inventory.Web.Consumer
 {
     public class InventoryUpdateConsumer : BackgroundService
     {
-        private const string BootstrapServers = "localhost:29094";
+        private const string BootstrapServers = "kafka:9092";
         private const string GroupId = "inventory_service_group";
         private const string Topic = "mp3-create-order";
 
