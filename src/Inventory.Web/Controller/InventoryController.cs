@@ -1,0 +1,30 @@
+using Inventory.Web.Interfaces.DomainServices;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Inventory.Web.Controller;
+
+[ApiController]
+[Route("api/[controller]")]
+public class InventoryController : ControllerBase
+{
+    private readonly IInventoryService _inventoryService;
+
+    public InventoryController(IInventoryService inventoryService)
+    {
+        _inventoryService = inventoryService;
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetProductsAsync()
+    {
+        var products = await _inventoryService.GetProductsAsync();
+        return Ok(products);
+    }
+    
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetProductByIdAsync(int id)
+    {
+        var product = await _inventoryService.GetProductByIdAsync(id);
+        return Ok(product);
+    }
+}
