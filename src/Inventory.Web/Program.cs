@@ -29,9 +29,13 @@ builder.Services.AddDbContext<InventoryContext>(options =>
 });
 
 // build services
+
+
 // Domain Services
 builder.Services.AddScoped<IInventoryService, InventoryService>();
+
 // Background Services
+
 
 // Repositories
 builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));

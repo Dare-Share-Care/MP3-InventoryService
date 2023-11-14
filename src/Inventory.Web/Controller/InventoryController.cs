@@ -21,7 +21,7 @@ public class InventoryController : ControllerBase
         return Ok(products);
     }
     
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<IActionResult> GetProductByIdAsync(int id)
     {
         var product = await _inventoryService.GetProductByIdAsync(id);

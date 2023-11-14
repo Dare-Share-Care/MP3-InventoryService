@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Inventory.Web.Entity;
 using Inventory.Web.Interfaces.DomainServices;
 using Inventory.Web.Interfaces.Repositories;
@@ -22,18 +23,21 @@ public class InventoryService : IInventoryService
         {
             Id = p.Id,
             Name = p.Name,
-            Quantity = p.Quantity
+            Quantity = p.Quantity,
+            Price = p.Price
         }).ToList();
     }
 
     public async Task<ProductDto> GetProductByIdAsync(int id)
     {
         var product = await _productReadRepository.FirstOrDefaultAsync(new ProductByIdSpec(id));
+        Debug.Assert(product != null, nameof(product) + " != null");
         return new ProductDto
         {
             Id = product.Id,
             Name = product.Name,
-            Quantity = product.Quantity
+            Quantity = product.Quantity,
+            Price = product.Price
         };
     }
 }

@@ -11,5 +11,4 @@ public class EfRepository<T> : RepositoryBase<T>, IRepository<T>, IReadRepositor
     {
         _dbContext = dbContext;
     }
-    
 }
