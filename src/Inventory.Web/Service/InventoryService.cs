@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using Inventory.Web.Entity;
 using Inventory.Web.Interfaces.Repositories;
 using Inventory.Web.Interfaces.DomainServices;
@@ -58,7 +59,6 @@ public class InventoryService : IInventoryService
         }
     }
     
-    // i want to make UpdateProductQuantityAsync function to be called from the consumer
     public async Task UpdateProductQuantityAsync(int id, int quantity)
     {
         var product = await _productReadRepository.FirstOrDefaultAsync(new ProductByIdSpec(id));
